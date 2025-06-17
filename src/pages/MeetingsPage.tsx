@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 interface Meeting {
   id?: number;
@@ -38,6 +39,7 @@ export default function MeetingsPage() {
 
   const handleCreate = async (e: React.FormEvent) => {
     e.preventDefault();
+
     const user = JSON.parse(localStorage.getItem('user') || '{}');
 
     const meetingToSend = {
@@ -49,17 +51,7 @@ export default function MeetingsPage() {
     const res = await fetch('http://localhost:5000/meetings', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        title: newMeeting.title,
-        description: newMeeting.description,
-        date: newMeeting.date,
-        startTime: newMeeting.startTime,
-        endTime: newMeeting.endTime,
-        participants: newMeeting.participants,
-        createdBy: user.email,
-        status: newMeeting.status,
-        createdAt: newMeeting.createdAt || new Date().toISOString(),
-      }),
+      body: JSON.stringify(meetingToSend),
     });
 
     if (res.ok) {
@@ -192,31 +184,41 @@ export default function MeetingsPage() {
             return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
           })
           .map((m) => (
-            <li key={m.id} className="p-4 border rounded shadow mb-2 bg-white">
-              <strong>{m.title}</strong> – {m.date} {m.startTime}–{m.endTime}
+            <li key={m.id} className="p-4 border rounded shadow mb-2">
+              <Link
+                to={`/meetings/${m.id}`}
+                className="text-blue-600 dark:text-blue-400 underline font-semibold hover:text-blue-800"
+              >
+                {m.title}
+              </Link>{' '}
+              – {m.date} {m.startTime}–{m.endTime}
               <br />
               <small>Status: {m.status}</small>
               <br />
               <small>Utworzył: {m.createdBy}</small>
               <br />
-              <button
-                onClick={() => setEditingMeeting(m)}
-                className="text-sm text-blue-600 underline mt-1"
-              >
-                Edytuj
-              </button>
-              <button
-                onClick={() => cancelMeeting(m.id!)}
-                className="text-sm text-red-600 underline ml-2"
-              >
-                Anuluj
-              </button>
+              {JSON.parse(localStorage.getItem('user') || '{}')?.role === 'admin' && (
+                <>
+                  <button
+                    onClick={() => setEditingMeeting(m)}
+                    className="text-sm text-blue-600 underline mt-1"
+                  >
+                    Edytuj
+                  </button>
+                  <button
+                    onClick={() => cancelMeeting(m.id!)}
+                    className="text-sm text-red-600 underline ml-2"
+                  >
+                    Anuluj
+                  </button>
+                </>
+              )}
             </li>
           ))}
       </ul>
 
       {editingMeeting && (
-        <form onSubmit={handleUpdate} className="mt-6 p-4 border rounded bg-white max-w-md">
+        <form onSubmit={handleUpdate} className="mt-6 p-4 border rounded max-w-md">
           <h3 className="text-xl font-bold mb-4">Edytuj spotkanie</h3>
 
           <input
