@@ -85,14 +85,15 @@ json-server --watch db.json --port 5000
 
 ## 🧪 Konta testowe
 
-````admin
+```bash
+ADMIN:
 Email: admin@admin.com
 Hasło: admin123
 
-```user
+USER:
 Email: user1@user.com
 Hasło: user123
-````
+```
 
 ---
 
