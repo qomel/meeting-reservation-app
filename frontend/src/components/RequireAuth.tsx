@@ -1,7 +1,20 @@
-import { Navigate, Outlet } from 'react-router-dom';
+import { Navigate, Outlet, useLocation } from "react-router-dom";
 
-export default function RequireAuth() {
-  const user = localStorage.getItem('user');
+interface Props {
+  allowedRoles?: string[]; // np. ['admin']
+}
 
-  return user ? <Outlet /> : <Navigate to="/login" replace />;
+export default function RequireAuth({ allowedRoles }: Props) {
+  const user = JSON.parse(localStorage.getItem("user") || "null");
+  const location = useLocation();
+
+  if (!user) {
+    return <Navigate to="/login" replace state={{ from: location }} />;
+  }
+
+  if (allowedRoles && !allowedRoles.includes(user.role)) {
+    return <Navigate to="/" replace />;
+  }
+
+  return <Outlet />;
 }

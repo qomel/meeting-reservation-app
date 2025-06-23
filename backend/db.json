@@ -1,7 +1,7 @@
 {
   "users": [
     {
-      "id": 1,
+      "id": "1",
       "firstName": "Anna",
       "lastName": "Nowak",
       "email": "admin@admin.com",
@@ -9,7 +9,7 @@
       "role": "admin"
     },
     {
-      "id": 2,
+      "id": "2",
       "firstName": "Jan",
       "lastName": "Kowalski",
       "email": "user1@example.com",
@@ -17,5 +17,18 @@
       "role": "user"
     }
   ],
-  "meetings": []
+  "meetings": [
+    {
+      "id": "9dd8",
+      "title": "123",
+      "description": "123",
+      "date": "1233-03-12",
+      "startTime": "12:03",
+      "endTime": "12:03",
+      "participants": [],
+      "createdBy": "admin@admin.com",
+      "status": "scheduled",
+      "createdAt": "2025-06-23T16:04:21.942Z"
+    }
+  ]
 }

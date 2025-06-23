@@ -1,35 +1,44 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginPage() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const [error, setError] = useState("");
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError(""); // wyczyść poprzedni błąd
 
     try {
       const res = await fetch(`http://localhost:5000/users?email=${email}`);
-      const users = await res.json();
+      if (!res.ok) {
+        setError("Błąd połączenia z serwerem.");
+        return;
+      }
 
+      const users = await res.json();
       const user = users.find((u: any) => u.password === password);
 
       if (user) {
-        localStorage.setItem('user', JSON.stringify(user));
-        navigate('/meetings'); // ← to jest kluczowe
+        localStorage.setItem("user", JSON.stringify(user));
+        navigate("/meetings");
       } else {
-        alert('Nieprawidłowy email lub hasło.');
+        setError("Nieprawidłowy email lub hasło.");
       }
-    } catch (error) {
-      console.error('Błąd logowania:', error);
-      alert('Błąd połączenia z serwerem.');
+    } catch (err) {
+      console.error("Błąd logowania:", err);
+      setError("Wystąpił błąd podczas logowania.");
     }
   };
 
   return (
     <div className="flex items-center justify-center h-screen bg-white">
-      <form onSubmit={handleLogin} className="bg-gray-100 p-6 rounded shadow-md w-80">
+      <form
+        onSubmit={handleLogin}
+        className="bg-gray-100 p-6 rounded shadow-md w-80"
+      >
         <h2 className="text-2xl font-bold mb-4 text-center">Logowanie</h2>
         <input
           type="email"
@@ -54,6 +63,7 @@ export default function LoginPage() {
           Zaloguj się
         </button>
       </form>
+      {error && <p className="text-red-600 font-semibold mt-2">{error}</p>}
     </div>
   );
 }
