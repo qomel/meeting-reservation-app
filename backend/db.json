@@ -1,0 +1,21 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "firstName": "Anna",
+      "lastName": "Nowak",
+      "email": "admin@admin.com",
+      "password": "admin123",
+      "role": "admin"
+    },
+    {
+      "id": 2,
+      "firstName": "Jan",
+      "lastName": "Kowalski",
+      "email": "user1@example.com",
+      "password": "user123",
+      "role": "user"
+    }
+  ],
+  "meetings": []
+}
