@@ -94,6 +94,8 @@ Email: user1@user.com
 Hasło: user123
 ````
 
+## 📌 Autorzy
+
 Projekt zaliczeniowy z React
 Dominik Pazurek, Marcin Grabania
 Specjalność: Frontend Development
