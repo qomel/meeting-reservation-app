@@ -27,7 +27,7 @@ export default function Navbar() {
         <Link to="/calendar" className="hover:underline">
           Kalendarz
         </Link>
-        <Link to="/statistics" className="hover:underline">
+        <Link to="/stats" className="hover:underline">
           Statystyki
         </Link>
         {user.role === "admin" && (

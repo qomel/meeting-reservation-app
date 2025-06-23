@@ -9,7 +9,7 @@ export default function LoginPage() {
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError(""); // wyczyść poprzedni błąd
+    setError("");
 
     try {
       const res = await fetch(`http://localhost:5000/users?email=${email}`);

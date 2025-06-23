@@ -64,6 +64,7 @@ export default function RegisterPage() {
           email: data.email,
           password: data.password,
           role: "user",
+          createdAt: new Date().toISOString(),
         }),
       });
 

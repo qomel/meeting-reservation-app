@@ -15,6 +15,15 @@
       "email": "user1@example.com",
       "password": "user123",
       "role": "user"
+    },
+    {
+      "id": "0d55",
+      "firstName": "ala",
+      "lastName": "traal",
+      "email": "cos@cos.com",
+      "password": "123456",
+      "role": "user",
+      "createdAt": "2025-06-23T16:53:22.032Z"
     }
   ],
   "meetings": [
@@ -29,6 +38,34 @@
       "createdBy": "admin@admin.com",
       "status": "scheduled",
       "createdAt": "2025-06-23T16:04:21.942Z"
+    },
+    {
+      "id": "5f5c",
+      "title": "adsasd",
+      "description": "asda",
+      "date": "1321-03-12",
+      "startTime": "12:03",
+      "endTime": "12:31",
+      "participants": [
+        "cos@cos.com"
+      ],
+      "createdBy": "cos@cos.com",
+      "status": "scheduled",
+      "createdAt": "2025-06-23T16:53:51.442Z"
+    },
+    {
+      "id": "1275",
+      "title": "adasdasd",
+      "description": "asdasd",
+      "date": "0123-03-12",
+      "startTime": "12:23",
+      "endTime": "13:22",
+      "participants": [
+        "admin@admin.com"
+      ],
+      "createdBy": "cos@cos.com",
+      "status": "scheduled",
+      "createdAt": "2025-06-23T16:54:08.277Z"
     }
   ]
 }
