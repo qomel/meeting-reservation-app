@@ -81,7 +81,7 @@ npm install -g json-server
 json-server --watch db.json --port 5000
 ```
 
---
+---
 
 ## 🧪 Konta testowe
 
@@ -93,6 +93,8 @@ Hasło: admin123
 Email: user1@user.com
 Hasło: user123
 ````
+
+---
 
 ## 📌 Autorzy
 
